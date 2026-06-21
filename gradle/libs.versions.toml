@@ -49,6 +49,11 @@ smbj = "0.14.0"
 textdrawable = "1.0.3"
 zxingAndroidEmbedded = "4.3.0"
 zxingCore = "3.5.4"
+jsoup = "1.15.3"
+jsoupxpath = "2.5.1"
+hutool = "5.8.27"
+commonsLang3 = "3.14.0"
+httpcore = "4.4.16"
 
 [libraries]
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
@@ -106,6 +111,11 @@ smbj = { group = "com.hierynomus", name = "smbj", version.ref = "smbj" }
 textdrawable = { group = "com.github.jahirfiquitiva", name = "TextDrawable", version.ref = "textdrawable" }
 zxing-android-embedded = { group = "com.journeyapps", name = "zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
 zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxingCore" }
+jsoup = { group = "org.jsoup", name = "jsoup", version.ref = "jsoup" }
+jsoupxpath = { group = "cn.wanghaomiao", name = "JsoupXpath", version.ref = "jsoupxpath" }
+hutool = { group = "cn.hutool", name = "hutool-all", version.ref = "hutool" }
+commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commonsLang3" }
+httpcore = { group = "org.apache.httpcomponents", name = "httpcore", version.ref = "httpcore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

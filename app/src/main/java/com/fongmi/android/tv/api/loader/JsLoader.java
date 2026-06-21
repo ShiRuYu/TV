@@ -45,9 +45,9 @@ public class JsLoader {
         });
     }
 
-    public Object[] proxy(Map<String, String> params) throws Exception {
+    public Object[] proxyLocal(Map<String, String> params) throws Exception {
         if (recent == null) return null;
         Spider spider = spiders.get(recent);
-        return spider != null ? spider.proxy(params) : null;
+        return spider != null ? spider.proxyLocal(params) : null;
     }
 }

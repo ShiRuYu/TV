@@ -149,7 +149,7 @@ public class JarLoader {
         return (JSONObject) method.invoke(null, jxs, name, flag, url);
     }
 
-    public Object[] proxy(Map<String, String> params) throws Exception {
+    public Object[] proxyLocal(Map<String, String> params) throws Exception {
         Method method = recent != null ? methods.get(recent) : null;
         Object[] result = proxyInvoke(method, params);
         if (result != null) return result;

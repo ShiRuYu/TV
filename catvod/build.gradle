@@ -32,5 +32,10 @@ dependencies {
     api libs.smbj
     api libs.startup
     api libs.zxing.core
+    api libs.jsoup
+    api libs.jsoupxpath
+    api libs.hutool
+    api libs.commons.lang3
+    api libs.httpcore
     coreLibraryDesugaring libs.desugar
 }

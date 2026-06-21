@@ -77,10 +77,10 @@ public class BaseLoader {
     }
 
     public Object[] proxy(Map<String, String> params) throws Exception {
-        if (params.containsKey("siteKey")) return getSpider(params.get("siteKey")).proxy(params);
-        if ("js".equals(params.get("do"))) return jsLoader.proxy(params);
-        if ("py".equals(params.get("do"))) return pyLoader.proxy(params);
-        return jarLoader.proxy(params);
+        if (params.containsKey("siteKey")) return getSpider(params.get("siteKey")).proxyLocal(params);
+        if ("js".equals(params.get("do"))) return jsLoader.proxyLocal(params);
+        if ("py".equals(params.get("do"))) return pyLoader.proxyLocal(params);
+        return jarLoader.proxyLocal(params);
     }
 
     public void parseJar(String jar, boolean recent) {

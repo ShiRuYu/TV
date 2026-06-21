@@ -2,6 +2,7 @@ package com.github.catvod.utils;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -15,6 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Json {
+
+    private static Gson gson;
+
+    public static Gson get() {
+        if (gson == null) gson = new Gson();
+        return gson;
+    }
 
     public static JsonElement parse(String json) {
         try {
@@ -84,6 +92,19 @@ public class Json {
         } catch (Exception e) {
             return new JsonObject();
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T parseSafe(String json, Class<T> clazz) {
+        try {
+            return get().fromJson(json, clazz);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static String toJson(Object obj) {
+        return get().toJson(obj);
     }
 
     public static Map<String, String> toMap(String json) {

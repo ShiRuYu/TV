@@ -10,6 +10,7 @@ import com.github.catvod.net.interceptor.ResponseInterceptor;
 
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -221,6 +222,55 @@ public class OkHttp {
                 return new X509Certificate[0];
             }
         };
+    }
+
+    public static Response execute(String url) throws Exception {
+        return newCall(url).execute();
+    }
+
+    public static Response execute(String url, Map<String, String> headers) throws Exception {
+        return newCall(url, headers).execute();
+    }
+
+    public static Response execute(String url, Map<String, String> headers, RequestBody body) throws Exception {
+        return newCall(url, headers, body).execute();
+    }
+
+    public static String post(String url, Map<String, String> params) {
+        return post(url, (Map) params, new HashMap<>());
+    }
+
+    public static String post(String url, Map<String, String> params, Map<String, String> headers) {
+        if (!url.startsWith("http")) return "";
+        FormBody.Builder form = new FormBody.Builder();
+        if (params != null) for (Map.Entry<String, String> entry : params.entrySet()) form.add(entry.getKey(), entry.getValue());
+        try (Response res = client().newCall(new Request.Builder().url(url).headers(Headers.of(headers)).post(form.build()).build()).execute()) {
+            return res.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String post(String url, String body, Map<String, String> headers) {
+        try (Response res = execute(url, headers, RequestBody.create(body, okhttp3.MediaType.parse("application/json; charset=utf-8")))) {
+            return res.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String getLocation(String url, Map<String, String> headers) {
+        try {
+            OkHttpClient client = noRedirect();
+            try (Response res = client.newCall(new Request.Builder().url(url).headers(Headers.of(headers)).build()).execute()) {
+                String location = res.header("Location");
+                return location != null ? location : url;
+            }
+        } catch (Exception e) {
+            return url;
+        }
     }
 
     public void clear() {

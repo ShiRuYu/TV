@@ -114,7 +114,7 @@ public class Spider extends com.github.catvod.crawler.Spider {
     }
 
     @Override
-    public Object[] proxy(Map<String, String> params) throws Exception {
+    public Object[] proxyLocal(Map<String, String> params) throws Exception {
         return "catvod".equals(params.get("from")) ? proxy2(params) : proxy1(params);
     }
 
